@@ -6,11 +6,11 @@ interface Props {
 	stocked: boolean;
 }
 
-export const ProductRow: React.FC<Props> = () => {
+export const ProductRow: React.FC<Props> = (props) => {
 	return (
 		<tr>
-			<td>Football</td>
-			<td>$49.99</td>
+			<td>{props.name}</td>
+			<td>{props.price}</td>
 		</tr>
 	)
 }

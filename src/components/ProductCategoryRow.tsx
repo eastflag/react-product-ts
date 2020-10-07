@@ -4,10 +4,10 @@ interface Props {
 	category: string;
 }
 
-export const ProductCategoryRow: React.FC<Props> = () => {
+export const ProductCategoryRow: React.FC<Props> = (props) => {
 	return (
 		<tr>
-			<th colSpan={2}>Sporting Goods</th>
+			<th colSpan={2}>{props.category}</th>
 		</tr>
 	)
 }
