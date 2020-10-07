@@ -2,12 +2,22 @@ import React from 'react';
 import {ProductCategoryRow} from "./ProductCategoryRow";
 import {ProductRow} from "./ProductRow";
 import {Product} from "../dto/Product";
+import _ from "lodash";
 
 interface Props {
 	products: Array<Product>
 }
 
-export const ProductTable: React.FC<Props> = () => {
+export const ProductTable: React.FC<Props> = (props) => {
+	const category = _.groupBy(props.products, 'category');
+	console.log(category);
+	const categoryList = []
+	for (let key in category) {
+		categoryList.push(<ProductCategoryRow category={key} key={key}></ProductCategoryRow>);
+		category[key].forEach((item: Product) => {
+			categoryList.push(<ProductRow name={item.name} price={item.price} stocked={item.stocked} key={item.name}></ProductRow>);
+		})
+	}
 	return (
 		<>
 			<table>
@@ -18,14 +28,9 @@ export const ProductTable: React.FC<Props> = () => {
 				</tr>
 				</thead>
 				<tbody>
-					<ProductCategoryRow></ProductCategoryRow>
-					<ProductRow></ProductRow>
-					<ProductRow></ProductRow>
-					<ProductRow></ProductRow>
-					<ProductCategoryRow></ProductCategoryRow>
-					<ProductRow></ProductRow>
-					<ProductRow></ProductRow>
-					<ProductRow></ProductRow>
+				{
+					categoryList
+				}
 				</tbody>
 			</table>
 		</>
