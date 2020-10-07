@@ -1,8 +1,13 @@
 import React from 'react';
 import {ProductCategoryRow} from "./ProductCategoryRow";
 import {ProductRow} from "./ProductRow";
+import {Product} from "../dto/Product";
 
-export const ProductTable = () => {
+interface Props {
+	products: Array<Product>
+}
+
+export const ProductTable: React.FC<Props> = () => {
 	return (
 		<>
 			<table>
