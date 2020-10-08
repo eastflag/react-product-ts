@@ -1,9 +1,15 @@
 import React from 'react';
 
-export const SearchBar = () => {
+interface Props {
+	keyword: string;
+	setKeyword: any;
+}
+
+export const SearchBar: React.FC<Props> = (props) => {
 	return (
 		<div>
-			<input placeholder="Search..."></input><br />
+			<input placeholder="Search..." value={props.keyword}
+						 onChange={(e) => props.setKeyword(e.target.value)}></input><br />
 			<input type="checkbox" ></input>Only show products in stock
 		</div>
 	)
