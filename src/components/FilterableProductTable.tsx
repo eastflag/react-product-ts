@@ -14,11 +14,13 @@ const products: Array<Product> = [
 
 export const FilterableProductTable= () => {
 	const [keyword, setKeyword] = useState<string>('');
+	const [stockChecked, setStockChecked] = useState(false);
 
 	return (
 		<div>
-			<SearchBar keyword={keyword} setKeyword={setKeyword}></SearchBar>
-			<ProductTable products={products.filter(item => item.name.indexOf(keyword) >= 0)}></ProductTable>
+			<SearchBar keyword={keyword} setKeyword={setKeyword}
+								 stockChecked={stockChecked} setStockChecked={setStockChecked}></SearchBar>
+			<ProductTable products={products.filter(item => item.name.indexOf(keyword) >= 0).filter(item => stockChecked ? item.stocked : true)}></ProductTable>
 		</div>
 	)
 }
